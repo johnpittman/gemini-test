@@ -1,3 +1,5 @@
+import { api } from "../../../utils/api";
+
 export const RETRIEVE_TRANSACTIONS = "RETRIEVE_TRANSACTIONS";
 export const RETRIEVE_TRANSACTIONS_ERROR = "RETRIEVE_TRANSACTIONS_ERROR";
 export const RETRIEVE_TRANSACTIONS_SUCCESS = "RETRIEVE_TRANSACTIONS_SUCCESS";
@@ -13,9 +15,7 @@ export const retrieveTransactionsAction = (params: { address: string }) => {
         type: RETRIEVE_TRANSACTIONS,
       });
 
-      const fetchResp = await fetch(
-        `http://jobcoin.gemini.com/budding-parsley/api/addresses/${params.address}`
-      );
+      const fetchResp = await fetch(api(`/addresses/${params.address}`));
       const parsedResp = await fetchResp.json();
 
       dispatch({
@@ -45,7 +45,9 @@ export const sendCoinsAction = (params: {
       });
 
       await fetch(
-        `http://jobcoin.gemini.com/budding-parsley/api/transactions?fromAddress=${params.fromAddress}&toAddress=${params.toAddress}&amount=${params.amount}`,
+        api(
+          `/transactions?fromAddress=${params.fromAddress}&toAddress=${params.toAddress}&amount=${params.amount}`
+        ),
         {
           method: "post",
         }
