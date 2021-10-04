@@ -5,10 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Component from "./component";
 import { selectBalance } from "../../../redux/modules/transactions/selectors";
 import { selectCoinAddress } from "../../../redux/modules/auth/selectors";
-import {
-  retrieveTransactionsAction,
-  sendCoinsAction,
-} from "../../../redux/modules/transactions/actions";
+import { retrieveTransactionsAction } from "../../../redux/modules/transactions/actions";
 import { getAccountBalanceOverTime } from "./store/selectors";
 // import store from "./store";
 
@@ -21,23 +18,6 @@ function TransactionPageContainer() {
   let senderAddress = useSelector(selectCoinAddress);
   let transactions = useSelector(getAccountBalanceOverTime);
 
-  let handleSendCoins = async (params) => {
-    await dispatch(
-      sendCoinsAction({
-        fromAddress: senderAddress,
-        toAddress: params.destAddress,
-        amount: params.amount,
-      })
-    );
-
-    // Repull data instead of wiring up optimistic data updates
-    dispatch(
-      retrieveTransactionsAction({
-        address: senderAddress,
-      })
-    );
-  };
-
   useEffect(() => {
     dispatch(
       retrieveTransactionsAction({
@@ -46,13 +26,7 @@ function TransactionPageContainer() {
     );
   }, [dispatch, senderAddress]);
 
-  return (
-    <Component
-      balance={balance}
-      transactions={transactions}
-      onSendCoins={handleSendCoins}
-    />
-  );
+  return <Component balance={balance} transactions={transactions} />;
 }
 
 export default TransactionPageContainer;
