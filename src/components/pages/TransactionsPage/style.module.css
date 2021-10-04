@@ -1,0 +1,43 @@
+.Page {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  padding: 28px 32px;
+
+  /* would use postcss variables for screen sizes */
+  /* @media (--screen-sm) {
+  } */
+}
+
+.SenderSections {
+  display: flex;
+  flex-direction: column;
+}
+
+.SenderWidget:first-child {
+  margin-top: 0;
+}
+
+.SenderWidget {
+  margin-top: 18px;
+  width: 240px;
+}
+
+.HistorySection {
+  display: flex;
+  flex-grow: 1;
+  margin-left: 32px;
+  max-height: 100%;
+}
+
+.HistorySectionCard {
+  width: 100%;
+}
+
+.HistorySectionCardHeader {
+  border: 0;
+}
+
+.HistorySectionCardContent {
+  flex-grow: 1;
+}

@@ -11,3 +11,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Normally I'd love all CSS variable(color, spacing, etc) here from a company style guide library
+and use those across the app */
